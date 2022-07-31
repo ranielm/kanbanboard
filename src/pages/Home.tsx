@@ -20,7 +20,7 @@ function Home() {
     event: React.DragEvent<HTMLDivElement>,
     data: string
   ) => {
-    // console.log("data dragStartHandler: ", data);
+    console.log("data dragStartHandler: ", data);
     event.dataTransfer.setData("text", data);
   };
 
