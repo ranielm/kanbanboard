@@ -35,6 +35,7 @@
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/explicit-function-return-type": "off",
     "react/react-in-jsx-scope": "off",
+    "react/prefer-stateless-function": 2,
     "comma-dangle": ["error", "never"]
   },
   "settings": {

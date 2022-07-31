@@ -4,9 +4,11 @@ import CardContent from "@mui/material/CardContent";
 import { Divider, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
-export default function OutlinedCard(props: { children: ReactNode }) {
-  const { children } = props;
+type OutlinedCardProps = {
+  children: ReactNode;
+};
 
+const OutlinedCard = ({ children }: OutlinedCardProps) => {
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">
@@ -20,4 +22,6 @@ export default function OutlinedCard(props: { children: ReactNode }) {
       </Card>
     </Box>
   );
-}
+};
+
+export default OutlinedCard;

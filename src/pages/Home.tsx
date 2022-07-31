@@ -11,7 +11,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary
 }));
 
-function Home() {
+const Home = () => {
   // The content of the target box
   const [content, setContent] = useState<string>("drop a button here");
 
@@ -62,6 +62,6 @@ function Home() {
       </div>
     </Stack>
   );
-}
+};
 
 export default Home;
