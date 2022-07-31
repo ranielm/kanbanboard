@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       <Typography variant="h2" gutterBottom component="div">
-        Welcome to React Router!{" "}
+        Kanban Board
       </Typography>
       <Routes>
         <Route path="/" element={<Home />} />

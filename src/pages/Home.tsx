@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { Divider, Typography, Stack, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import OutlinedCard from "../components/OutlinedCard";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -47,7 +48,9 @@ const Home = () => {
         onDragStart={(event) => dragStartHandler(event, "first task")}
         draggable={true}
       >
-        <Item>first task</Item>
+        <OutlinedCard>
+          <Item>first task</Item>
+        </OutlinedCard>
       </div>
       <div
         onDragStart={(event) => dragStartHandler(event, "second task")}
