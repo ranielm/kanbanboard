@@ -1,6 +1,5 @@
-import Button from "@mui/material/Button";
 import { useState } from "react";
-import { Divider, Typography, Stack, Paper } from "@mui/material";
+import { Divider, Stack, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import OutlinedCard from "../components/OutlinedCard";
 
@@ -9,10 +8,10 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
+  color: theme.palette.text.secondary
 }));
 
-const Home = () => {
+function Home() {
   // The content of the target box
   const [content, setContent] = useState<string>("drop a button here");
 
@@ -21,7 +20,7 @@ const Home = () => {
     event: React.DragEvent<HTMLDivElement>,
     data: string
   ) => {
-    console.log("data dragStartHandler: ", data);
+    // console.log("data dragStartHandler: ", data);
     event.dataTransfer.setData("text", data);
   };
 
@@ -29,7 +28,7 @@ const Home = () => {
   const dropHandler = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const data = event.dataTransfer.getData("text");
-    console.log("data dropHandler: ", data);
+    // console.log("data dropHandler: ", data);
     setContent(data);
   };
 
@@ -46,7 +45,7 @@ const Home = () => {
     >
       <div
         onDragStart={(event) => dragStartHandler(event, "first task")}
-        draggable={true}
+        draggable
       >
         <OutlinedCard>
           <Item>first task</Item>
@@ -54,7 +53,7 @@ const Home = () => {
       </div>
       <div
         onDragStart={(event) => dragStartHandler(event, "second task")}
-        draggable={true}
+        draggable
       >
         <Item>second task</Item>
       </div>
@@ -63,6 +62,6 @@ const Home = () => {
       </div>
     </Stack>
   );
-};
+}
 
 export default Home;
