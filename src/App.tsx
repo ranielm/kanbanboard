@@ -6,7 +6,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-const App = () => {
+function App() {
   return (
     <>
       <Typography variant="h2" gutterBottom component="div">
@@ -17,6 +17,6 @@ const App = () => {
       </Routes>
     </>
   );
-};
+}
 
 export default App;
