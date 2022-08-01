@@ -14,7 +14,7 @@ const OutlinedCard = ({ children }: OutlinedCardProps) => {
       <Card variant="outlined">
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Backlog | 1
+            ToDo | 1
           </Typography>
           <Divider />
           {children}

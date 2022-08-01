@@ -1,15 +1,8 @@
 import { useState } from "react";
-import { Divider, Stack, Paper } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Divider, Stack } from "@mui/material";
+// TODO: criar exportador de componentes
 import OutlinedCard from "../components/OutlinedCard";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary
-}));
+import Input from "../components/Input";
 
 const Home = () => {
   // The content of the target box
@@ -48,17 +41,21 @@ const Home = () => {
         draggable
       >
         <OutlinedCard>
-          <Item>first task</Item>
+          <Input />
         </OutlinedCard>
       </div>
       <div
         onDragStart={(event) => dragStartHandler(event, "second task")}
         draggable
       >
-        <Item>second task</Item>
+        <OutlinedCard>
+          <Input />
+        </OutlinedCard>
       </div>
       <div onDragOver={allowDrop} onDrop={dropHandler}>
-        <h2>{content}</h2>
+        <OutlinedCard>
+          <h2>{content}</h2>
+        </OutlinedCard>
       </div>
     </Stack>
   );
