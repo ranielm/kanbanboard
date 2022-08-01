@@ -21,7 +21,6 @@ const title = (
         <Grid item xs={1} sm={1} md={1}>
           <TextField
             id="standard-textarea"
-            label="Título"
             variant="standard"
             placeholder="Digite o nome da task"
             InputProps={{ disableUnderline: true }}
@@ -30,7 +29,7 @@ const title = (
         <Grid item xs={1} sm={1} md={1}>
           <TextField
             id="outlined-multiline-static"
-            label="Assunto"
+            placeholder="Assunto"
             multiline
             fullWidth
             rows={4}
@@ -42,7 +41,7 @@ const title = (
   </CardContent>
 );
 
-const CustomInput = () => {
+const TaskCard = () => {
   return (
     <Box sx={{ flexGrow: 1, minWidth: 275, mt: 2 }}>
       <Card variant="outlined">{title}</Card>
@@ -50,4 +49,4 @@ const CustomInput = () => {
   );
 };
 
-export default CustomInput;
+export default TaskCard;

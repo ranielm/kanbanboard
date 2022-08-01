@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Divider, Stack } from "@mui/material";
 // TODO: criar exportador de componentes
 import OutlinedCard from "../components/OutlinedCard";
-import Input from "../components/Input";
+import TaskCard from "../components/TaskCard";
 
 const Home = () => {
   // The content of the target box
@@ -41,7 +41,7 @@ const Home = () => {
         draggable
       >
         <OutlinedCard>
-          <Input />
+          <TaskCard />
         </OutlinedCard>
       </div>
       <div
@@ -49,7 +49,7 @@ const Home = () => {
         draggable
       >
         <OutlinedCard>
-          <Input />
+          <TaskCard />
         </OutlinedCard>
       </div>
       <div onDragOver={allowDrop} onDrop={dropHandler}>
