@@ -1,16 +1,22 @@
+import { DragEvent } from "react";
+import { Divider, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Divider, Typography } from "@mui/material";
-import { ReactNode } from "react";
 import IconButton from "./IconButton";
+import TaskCard from "./TaskCard";
 
-type OutlinedCardProps = {
+export type OutlinedCardProps = {
   boardName: string;
-  children: ReactNode;
+  taskName: string;
+  dragStartHandler: (event: DragEvent<HTMLDivElement>, data: string) => void;
 };
 
-const OutlinedCard = ({ children, boardName }: OutlinedCardProps) => {
+const OutlinedCard = ({
+  boardName,
+  taskName,
+  dragStartHandler
+}: OutlinedCardProps) => {
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">
@@ -19,7 +25,12 @@ const OutlinedCard = ({ children, boardName }: OutlinedCardProps) => {
             {boardName}
           </Typography>
           <Divider />
-          {children}
+          <Box
+            onDragStart={(event) => dragStartHandler(event, taskName)}
+            draggable
+          >
+            <TaskCard />
+          </Box>
         </CardContent>
         <Box sx={{ minWidth: 275, ml: 2, mb: 3 }}>
           <IconButton variant="add" />

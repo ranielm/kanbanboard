@@ -3,7 +3,6 @@ import { Divider, Stack, Typography } from "@mui/material";
 // TODO: criar exportador de componentes
 import OutlinedCard from "../components/OutlinedCard";
 // import TaskCard from "../components/TaskCard";
-import PrincipalCard from "../components/PrincipalCard";
 
 // type Card = {
 //   title: string;
@@ -46,20 +45,18 @@ const GenerateBoard = () => {
       spacing={2}
     >
       {/* TODO: criar array de componentes e variar apenas a task name */}
-      <PrincipalCard
+      <OutlinedCard
         dragStartHandler={dragStartHandler}
         taskName="first task"
         boardName="ToDo"
       />
-      <PrincipalCard
+      <OutlinedCard
         dragStartHandler={dragStartHandler}
         taskName="second task"
         boardName="Doing"
       />
       <div onDragOver={allowDrop} onDrop={dropHandler}>
-        <OutlinedCard boardName="Done">
-          <Typography>{content}</Typography>
-        </OutlinedCard>
+        <Typography>{content}</Typography>
       </div>
     </Stack>
   );

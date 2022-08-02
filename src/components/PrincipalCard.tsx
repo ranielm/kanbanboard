@@ -1,6 +1,6 @@
 import { DragEvent } from "react";
-import { Box } from "@mui/material";
-import OutlinedCard from "./OutlinedCard";
+// import { Box } from "@mui/material";
+// import OutlinedCard from "./OutlinedCard";
 import TaskCard from "./TaskCard";
 
 export type PrincipalCardProps = {
@@ -9,17 +9,13 @@ export type PrincipalCardProps = {
   dragStartHandler: (event: DragEvent<HTMLDivElement>, data: string) => void;
 };
 
-const PrincipalCard = ({
-  boardName,
-  taskName,
-  dragStartHandler
-}: PrincipalCardProps) => {
+const PrincipalCard = () => {
   return (
-    <OutlinedCard boardName={boardName}>
-      <Box onDragStart={(event) => dragStartHandler(event, taskName)} draggable>
-        <TaskCard />
-      </Box>
-    </OutlinedCard>
+    // <OutlinedCard boardName={boardName}>
+    //   <Box onDragStart={(event) => dragStartHandler(event, taskName)} draggable>
+    <TaskCard />
+    //   </Box>
+    // </OutlinedCard>
   );
 };
 
