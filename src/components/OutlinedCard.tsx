@@ -6,16 +6,17 @@ import { ReactNode } from "react";
 import IconButton from "./IconButton";
 
 type OutlinedCardProps = {
+  boardName: string;
   children: ReactNode;
 };
 
-const OutlinedCard = ({ children }: OutlinedCardProps) => {
+const OutlinedCard = ({ children, boardName }: OutlinedCardProps) => {
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            ToDo | 1
+            {boardName}
           </Typography>
           <Divider />
           {children}
