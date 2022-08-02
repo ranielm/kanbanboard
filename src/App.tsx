@@ -1,17 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import GenerateBoard from "./pages/GenerateBoard";
+import KanbanBoard from "./pages/KanbanBoard";
 
 const App = () => {
   return (
-    <>
-      <Typography variant="h2" gutterBottom component="div">
-        Kanban Board
-      </Typography>
-      <Routes>
-        <Route path="/" element={<GenerateBoard />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<KanbanBoard />} />
+    </Routes>
   );
 };
 

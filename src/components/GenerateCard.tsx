@@ -6,17 +6,17 @@ import CardContent from "@mui/material/CardContent";
 import IconButton from "./IconButton";
 import TaskCard from "./TaskCard";
 
-export type OutlinedCardProps = {
+export type GenerateCardProps = {
   boardName: string;
   taskName: string;
   dragStartHandler: (event: DragEvent<HTMLDivElement>, data: string) => void;
 };
 
-const OutlinedCard = ({
+const GenerateCard = ({
   boardName,
   taskName,
   dragStartHandler
-}: OutlinedCardProps) => {
+}: GenerateCardProps) => {
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">
@@ -40,4 +40,4 @@ const OutlinedCard = ({
   );
 };
 
-export default OutlinedCard;
+export default GenerateCard;

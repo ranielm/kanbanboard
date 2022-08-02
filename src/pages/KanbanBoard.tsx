@@ -1,7 +1,7 @@
 import { useState, DragEvent } from "react";
 import { Divider, Stack, Typography } from "@mui/material";
 // TODO: criar exportador de componentes
-import OutlinedCard from "../components/OutlinedCard";
+import GenerateCard from "../components/GenerateCard";
 // import TaskCard from "../components/TaskCard";
 
 // type Card = {
@@ -9,7 +9,7 @@ import OutlinedCard from "../components/OutlinedCard";
 //   content: string;
 // };
 
-const GenerateBoard = () => {
+const KanbanBoard = () => {
   // type Card = {
   //   title: string;
   //   content: string;
@@ -39,27 +39,32 @@ const GenerateBoard = () => {
   };
 
   return (
-    <Stack
-      direction="row"
-      divider={<Divider orientation="vertical" flexItem />}
-      spacing={2}
-    >
-      {/* TODO: criar array de componentes e variar apenas a task name */}
-      <OutlinedCard
-        dragStartHandler={dragStartHandler}
-        taskName="first task"
-        boardName="ToDo"
-      />
-      <OutlinedCard
-        dragStartHandler={dragStartHandler}
-        taskName="second task"
-        boardName="Doing"
-      />
-      <div onDragOver={allowDrop} onDrop={dropHandler}>
-        <Typography>{content}</Typography>
-      </div>
-    </Stack>
+    <>
+      <Typography variant="h2" gutterBottom component="div">
+        Kanban Board
+      </Typography>
+      <Stack
+        direction="row"
+        divider={<Divider orientation="vertical" flexItem />}
+        spacing={2}
+      >
+        {/* TODO: criar array de componentes e variar apenas a task name */}
+        <GenerateCard
+          dragStartHandler={dragStartHandler}
+          taskName="first task"
+          boardName="ToDo"
+        />
+        <GenerateCard
+          dragStartHandler={dragStartHandler}
+          taskName="second task"
+          boardName="Doing"
+        />
+        <div onDragOver={allowDrop} onDrop={dropHandler}>
+          <Typography>{content}</Typography>
+        </div>
+      </Stack>
+    </>
   );
 };
 
-export default GenerateBoard;
+export default KanbanBoard;
