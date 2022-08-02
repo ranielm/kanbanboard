@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  Grid,
-  TextField
-} from "@mui/material";
+import { Box, Card, CardContent, Grid, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import IconButton from "./IconButton";
 
@@ -46,9 +39,9 @@ const title = (
         </Grid>
       </Grid>
     </ThemeProvider>
-    <CardActions>
+    <Box sx={{ mt: 2, mb: 3 }}>
       <IconButton variant="delete" />
-    </CardActions>
+    </Box>
   </CardContent>
 );
 

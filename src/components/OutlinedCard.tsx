@@ -19,8 +19,10 @@ const OutlinedCard = ({ children }: OutlinedCardProps) => {
           </Typography>
           <Divider />
           {children}
-          <IconButton variant="add" />
         </CardContent>
+        <Box sx={{ minWidth: 275, ml: 2, mb: 3 }}>
+          <IconButton variant="add" />
+        </Box>
       </Card>
     </Box>
   );
