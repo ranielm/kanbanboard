@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Divider, Typography } from "@mui/material";
 import { ReactNode } from "react";
+import IconButton from "./IconButton";
 
 type OutlinedCardProps = {
   children: ReactNode;
@@ -18,6 +19,7 @@ const OutlinedCard = ({ children }: OutlinedCardProps) => {
           </Typography>
           <Divider />
           {children}
+          <IconButton variant="add" />
         </CardContent>
       </Card>
     </Box>

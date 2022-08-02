@@ -1,5 +1,13 @@
-import { Box, Card, CardContent, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Grid,
+  TextField
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import IconButton from "./IconButton";
 
 const theme = createTheme({
   components: {
@@ -29,7 +37,7 @@ const title = (
         <Grid item xs={1} sm={1} md={1}>
           <TextField
             id="outlined-multiline-static"
-            placeholder="Assunto"
+            placeholder="Digite o assunto da task"
             multiline
             fullWidth
             rows={4}
@@ -38,6 +46,9 @@ const title = (
         </Grid>
       </Grid>
     </ThemeProvider>
+    <CardActions>
+      <IconButton variant="delete" />
+    </CardActions>
   </CardContent>
 );
 
