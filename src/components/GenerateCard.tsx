@@ -12,7 +12,7 @@ export type GenerateCardProps = {
   dragStartHandler: (event: DragEvent<HTMLDivElement>, data: string) => void;
 };
 
-type Card = {
+export type Card = {
   title: string;
   content: string;
 };
@@ -23,10 +23,12 @@ const GenerateCard = ({
   dragStartHandler
 }: GenerateCardProps) => {
   const [cards, setCards] = useState<Card[]>([]);
-
   const addCard = () => {
     // State change will cause component re-render
-    const card: Card = { title: "100", content: "Bob" };
+    const card: Card = {
+      title: "Subir arquitetura React",
+      content: "Usar padrões já testados"
+    };
     setCards((prevCards) => [...prevCards, card]);
   };
 
@@ -43,8 +45,7 @@ const GenerateCard = ({
               onDragStart={(event) => dragStartHandler(event, taskName)}
               draggable
             >
-              {card.title}
-              <TaskCard addCard={addCard} />
+              <TaskCard card={card} addCard={addCard} />
             </Box>
           ))}
         </CardContent>

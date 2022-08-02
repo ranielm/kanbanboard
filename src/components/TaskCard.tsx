@@ -1,6 +1,13 @@
-import { Box, Card, CardContent, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  Card as MaterialCard,
+  CardContent,
+  Grid,
+  TextField
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import IconButton from "./IconButton";
+import { Card } from "./GenerateCard";
 
 const theme = createTheme({
   components: {
@@ -13,13 +20,14 @@ const theme = createTheme({
 });
 
 export interface TaskCardProps {
+  card: Card;
   addCard: () => void;
 }
 
-const TaskCard = ({ addCard }: TaskCardProps) => {
+const TaskCard = ({ card, addCard }: TaskCardProps) => {
   return (
     <Box sx={{ flexGrow: 1, minWidth: 275, mt: 2 }}>
-      <Card variant="outlined">
+      <MaterialCard variant="outlined">
         <CardContent>
           <ThemeProvider theme={theme}>
             <Grid
@@ -31,14 +39,16 @@ const TaskCard = ({ addCard }: TaskCardProps) => {
                 <TextField
                   id="standard-textarea"
                   variant="standard"
-                  placeholder="Digite o nome da task"
+                  // placeholder="Digite o nome da task"
+                  placeholder={card.title}
                   InputProps={{ disableUnderline: true }}
                 />
               </Grid>
               <Grid item xs={1} sm={1} md={1}>
                 <TextField
                   id="outlined-multiline-static"
-                  placeholder="Digite o assunto da task"
+                  // placeholder="Digite o assunto da task"
+                  placeholder={card.content}
                   multiline
                   fullWidth
                   rows={4}
@@ -51,7 +61,7 @@ const TaskCard = ({ addCard }: TaskCardProps) => {
             <IconButton variant="delete" addCard={addCard} />
           </Box>
         </CardContent>
-      </Card>
+      </MaterialCard>
     </Box>
   );
 };
