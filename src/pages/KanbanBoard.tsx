@@ -10,11 +10,6 @@ import GenerateCard from "../components/GenerateCard";
 // };
 
 const KanbanBoard = () => {
-  // type Card = {
-  //   title: string;
-  //   content: string;
-  // };
-  // const [cards, setCards] = useState<Card[]>([]);
   // The content of the target box
   const [content, setContent] = useState<string>("drop a button here");
 

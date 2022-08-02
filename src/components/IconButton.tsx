@@ -4,11 +4,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SaveIcon from "@mui/icons-material/Save";
 
-interface ButtonProps {
+export interface ButtonProps {
   variant: "save" | "delete" | "add";
+  addCard: () => void;
 }
 
-const PresetButton = ({ variant }: ButtonProps) => {
+const PresetButton = ({ variant, addCard }: ButtonProps) => {
   switch (variant) {
     case "save":
       return (
@@ -24,7 +25,11 @@ const PresetButton = ({ variant }: ButtonProps) => {
       );
     case "add":
       return (
-        <Button variant="contained" endIcon={<AddCircleIcon />}>
+        <Button
+          variant="contained"
+          onClick={addCard}
+          endIcon={<AddCircleIcon />}
+        >
           Add
         </Button>
       );
@@ -33,10 +38,10 @@ const PresetButton = ({ variant }: ButtonProps) => {
   }
 };
 
-const IconButton = ({ variant }: ButtonProps) => {
+const IconButton = ({ variant, addCard }: ButtonProps) => {
   return (
     <Stack direction="row" spacing={2}>
-      <PresetButton variant={variant} />
+      <PresetButton variant={variant} addCard={addCard} />
     </Stack>
   );
 };

@@ -1,4 +1,4 @@
-import { DragEvent } from "react";
+import { DragEvent, useState } from "react";
 import { Divider, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -12,11 +12,24 @@ export type GenerateCardProps = {
   dragStartHandler: (event: DragEvent<HTMLDivElement>, data: string) => void;
 };
 
+type Card = {
+  title: string;
+  content: string;
+};
+
 const GenerateCard = ({
   boardName,
   taskName,
   dragStartHandler
 }: GenerateCardProps) => {
+  const [cards, setCards] = useState<Card[]>([]);
+
+  const addCard = () => {
+    // State change will cause component re-render
+    const card: Card = { title: "100", content: "Bob" };
+    setCards((prevCards) => [...prevCards, card]);
+  };
+
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">
@@ -25,15 +38,18 @@ const GenerateCard = ({
             {boardName}
           </Typography>
           <Divider />
-          <Box
-            onDragStart={(event) => dragStartHandler(event, taskName)}
-            draggable
-          >
-            <TaskCard />
-          </Box>
+          {cards.map((card: Card) => (
+            <Box
+              onDragStart={(event) => dragStartHandler(event, taskName)}
+              draggable
+            >
+              {card.title}
+              <TaskCard addCard={addCard} />
+            </Box>
+          ))}
         </CardContent>
         <Box sx={{ minWidth: 275, ml: 2, mb: 3 }}>
-          <IconButton variant="add" />
+          <IconButton addCard={addCard} variant="add" />
         </Box>
       </Card>
     </Box>
