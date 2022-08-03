@@ -6,7 +6,7 @@ import { TodoContextType, ITodo } from "../types/todo";
 const AddTodo: FC = () => {
   const titleId = useId();
   const descriptionId = useId();
-  const { saveToDo } = useContext(TodoContext) as TodoContextType;
+  const { saveTodo } = useContext(TodoContext) as TodoContextType;
 
   const [formData, setFormData] = useState<ITodo>({
     id: uuidv4(),
@@ -16,27 +16,27 @@ const AddTodo: FC = () => {
   });
 
   const handleTitle = (event: FormEvent<HTMLInputElement>): void => {
-    const newToDo = { ...formData };
-    newToDo.title = event.currentTarget.value;
-    setFormData(newToDo);
+    const newTodo = { ...formData };
+    newTodo.title = event.currentTarget.value;
+    setFormData(newTodo);
   };
 
   const handleDescription = (event: FormEvent<HTMLInputElement>): void => {
-    const newToDo = { ...formData };
-    newToDo.description = event.currentTarget.value;
-    setFormData(newToDo);
+    const newTodo = { ...formData };
+    newTodo.description = event.currentTarget.value;
+    setFormData(newTodo);
   };
 
-  const handlesaveToDo = (event: FormEvent, handleFormData: ITodo) => {
+  const handlesaveTodo = (event: FormEvent, handleFormData: ITodo) => {
     event.preventDefault();
-    saveToDo(handleFormData);
+    saveTodo(handleFormData);
   };
 
   return (
     <form
       className="Form"
       onSubmit={(event) => {
-        return handlesaveToDo(event, formData);
+        return handlesaveTodo(event, formData);
       }}
     >
       <div>

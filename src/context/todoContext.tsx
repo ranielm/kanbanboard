@@ -11,7 +11,7 @@ type Props = {
 const TodoProvider: FC<Props> = ({ children }) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
-  const saveToDo = (todo: ITodo) => {
+  const saveTodo = (todo: ITodo) => {
     const newToDo: ITodo = {
       id: uuidv4(),
       title: todo.title,
@@ -22,7 +22,7 @@ const TodoProvider: FC<Props> = ({ children }) => {
     setTodos((prevToDos) => [...prevToDos, newToDo]);
   };
 
-  const updateToDo = (id: string) => {
+  const updateTodo = (id: string) => {
     todos.forEach((todo, index) => {
       if (todo.id === id) {
         todos[index].status = true;
@@ -34,8 +34,8 @@ const TodoProvider: FC<Props> = ({ children }) => {
   const value = useMemo(
     () => ({
       todos,
-      saveToDo,
-      updateToDo
+      saveTodo,
+      updateTodo
     }),
     [todos]
   );
