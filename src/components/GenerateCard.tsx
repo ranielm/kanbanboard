@@ -1,40 +1,47 @@
-import { DragEvent, useState } from "react";
-import { Divider, Typography } from "@mui/material";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+/* eslint-disable no-console */
+import { DragEvent } from "react";
+import {
+  Divider,
+  Typography,
+  Box,
+  CardContent,
+  Card as MaterialCard
+} from "@mui/material";
+import { Card } from "../interfaces/Card";
 import IconButton from "./IconButton";
 import TaskCard from "./TaskCard";
 
 export type GenerateCardProps = {
   boardName: string;
-  taskName: string;
-  dragStartHandler: (event: DragEvent<HTMLDivElement>, data: string) => void;
+  cards: Card[];
 };
 
-export type Card = {
-  title: string;
-  content: string;
-};
+const GenerateCard = ({ boardName, cards }: GenerateCardProps) => {
+  const dragStartHandler = (event: DragEvent<HTMLDivElement>, card: Card) => {
+    event.dataTransfer.setData("id", card.id);
+    event.dataTransfer.setData("title", card.title);
+    // TODO: adicionar erro caso não haja title ou content
+    event.dataTransfer.setData("content", card.title);
+    event.dataTransfer.setData("list", card.list);
+  };
 
-const GenerateCard = ({
-  boardName,
-  taskName,
-  dragStartHandler
-}: GenerateCardProps) => {
-  const [cards, setCards] = useState<Card[]>([]);
-  const addCard = () => {
-    // State change will cause component re-render
-    const card: Card = {
-      title: "Subir arquitetura React",
-      content: "Usar padrões já testados"
-    };
-    setCards((prevCards) => [...prevCards, card]);
+  const dropHandler = (event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    console.log(event.dataTransfer.getData("list"));
+  };
+
+  const allowDrop = (event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
+  const changeTitle = (cardId: string, title: string) => {
+    console.log("cardId: ", cardId);
+    console.log("title: ", title);
   };
 
   return (
-    <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">
+    <Box sx={{ minWidth: 275 }} onDragOver={allowDrop} onDrop={dropHandler}>
+      <MaterialCard variant="outlined">
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {boardName}
@@ -42,17 +49,20 @@ const GenerateCard = ({
           <Divider />
           {cards.map((card: Card) => (
             <Box
-              onDragStart={(event) => dragStartHandler(event, taskName)}
+              key={card.id}
+              onDragStart={(event) => dragStartHandler(event, card)}
               draggable
             >
-              <TaskCard card={card} addCard={addCard} />
+              {boardName}
+              {card.list}
+              <TaskCard card={card} changeTitle={changeTitle} />
             </Box>
           ))}
         </CardContent>
         <Box sx={{ minWidth: 275, ml: 2, mb: 3 }}>
-          <IconButton addCard={addCard} variant="add" />
+          <IconButton variant="add" />
         </Box>
-      </Card>
+      </MaterialCard>
     </Box>
   );
 };

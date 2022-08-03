@@ -1,37 +1,15 @@
-import { useState, DragEvent } from "react";
+/* eslint-disable no-console */
 import { Divider, Stack, Typography } from "@mui/material";
+import { useState } from "react";
 // TODO: criar exportador de componentes
 import GenerateCard from "../components/GenerateCard";
-// import TaskCard from "../components/TaskCard";
-
-// type Card = {
-//   title: string;
-//   content: string;
-// };
+import { Card } from "../interfaces/Card";
 
 const KanbanBoard = () => {
-  // The content of the target box
-  const [content, setContent] = useState<string>("drop a button here");
-
-  // This function will be triggered when you start dragging
-  const dragStartHandler = (event: DragEvent<HTMLDivElement>, data: string) => {
-    // eslint-disable-next-line no-console
-    console.log("data dragStartHandler: ", data);
-    event.dataTransfer.setData("text", data);
-  };
-
-  // This function will be triggered when dropping
-  const dropHandler = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    // console.log("data dropHandler: ", data);
-    setContent(data);
-  };
-
-  // This makes the third box become droppable
-  const allowDrop = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  };
+  const [cardsToDo, setCardsToDo] = useState<Card[]>([]);
+  const [cardsDoing, setCardsDoing] = useState<Card[]>([]);
+  const [cardsDone, setCardsDone] = useState<Card[]>([]);
+  console.log(setCardsToDo, setCardsDoing, setCardsDone);
 
   return (
     <>
@@ -43,20 +21,9 @@ const KanbanBoard = () => {
         divider={<Divider orientation="vertical" flexItem />}
         spacing={2}
       >
-        {/* TODO: criar array de componentes e variar apenas a task name */}
-        <GenerateCard
-          dragStartHandler={dragStartHandler}
-          taskName="first task"
-          boardName="ToDo"
-        />
-        <GenerateCard
-          dragStartHandler={dragStartHandler}
-          taskName="second task"
-          boardName="Doing"
-        />
-        <div onDragOver={allowDrop} onDrop={dropHandler}>
-          <Typography>{content}</Typography>
-        </div>
+        <GenerateCard boardName="ToDo" cards={cardsToDo} />
+        <GenerateCard boardName="Doing" cards={cardsDoing} />
+        <GenerateCard boardName="Done" cards={cardsDone} />
       </Stack>
     </>
   );

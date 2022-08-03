@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button, Stack } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -6,10 +5,9 @@ import SaveIcon from "@mui/icons-material/Save";
 
 export interface ButtonProps {
   variant: "save" | "delete" | "add";
-  addCard: () => void;
 }
 
-const PresetButton = ({ variant, addCard }: ButtonProps) => {
+const PresetButton = ({ variant }: ButtonProps) => {
   switch (variant) {
     case "save":
       return (
@@ -25,11 +23,7 @@ const PresetButton = ({ variant, addCard }: ButtonProps) => {
       );
     case "add":
       return (
-        <Button
-          variant="contained"
-          onClick={addCard}
-          endIcon={<AddCircleIcon />}
-        >
+        <Button variant="contained" endIcon={<AddCircleIcon />}>
           Add
         </Button>
       );
@@ -38,10 +32,10 @@ const PresetButton = ({ variant, addCard }: ButtonProps) => {
   }
 };
 
-const IconButton = ({ variant, addCard }: ButtonProps) => {
+const IconButton = ({ variant }: ButtonProps) => {
   return (
     <Stack direction="row" spacing={2}>
-      <PresetButton variant={variant} addCard={addCard} />
+      <PresetButton variant={variant} />
     </Stack>
   );
 };

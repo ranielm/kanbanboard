@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import IconButton from "./IconButton";
-import { Card } from "./GenerateCard";
+import { Card } from "../interfaces/Card";
 
 const theme = createTheme({
   components: {
@@ -21,10 +21,10 @@ const theme = createTheme({
 
 export interface TaskCardProps {
   card: Card;
-  addCard: () => void;
+  changeTitle: (cardId: string, title: string) => void;
 }
 
-const TaskCard = ({ card, addCard }: TaskCardProps) => {
+const TaskCard = ({ card, changeTitle }: TaskCardProps) => {
   return (
     <Box sx={{ flexGrow: 1, minWidth: 275, mt: 2 }}>
       <MaterialCard variant="outlined">
@@ -39,26 +39,25 @@ const TaskCard = ({ card, addCard }: TaskCardProps) => {
                 <TextField
                   id="standard-textarea"
                   variant="standard"
-                  // placeholder="Digite o nome da task"
-                  placeholder={card.title}
-                  InputProps={{ disableUnderline: true }}
+                  label={card.title}
+                  onChange={(e) => changeTitle(card.id, e.target.value)}
+                  placeholder="Enter the task name"
                 />
               </Grid>
               <Grid item xs={1} sm={1} md={1}>
                 <TextField
                   id="outlined-multiline-static"
-                  // placeholder="Digite o assunto da task"
-                  placeholder={card.content}
+                  placeholder="Enter the task subject"
                   multiline
+                  variant="standard"
                   fullWidth
                   rows={4}
-                  InputProps={{ disableUnderline: true }}
                 />
               </Grid>
             </Grid>
           </ThemeProvider>
-          <Box sx={{ mt: 2, mb: 3 }}>
-            <IconButton variant="delete" addCard={addCard} />
+          <Box sx={{ mt: 0, mb: 0 }}>
+            <IconButton variant="delete" />
           </Box>
         </CardContent>
       </MaterialCard>
