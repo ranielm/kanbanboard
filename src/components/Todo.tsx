@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { ITodo } from "../types/todo";
+import { IToDo } from "../types/ToDo";
 
 type Props = {
-  todo: ITodo;
-  updateTodo: (id: number) => void;
+  todo: IToDo;
+  updateToDo: (id: string) => void;
 };
 
-const Todo: FC<Props> = ({ todo, updateTodo }) => {
+const Todo: FC<Props> = ({ todo, updateToDo }) => {
   const checkTodo: string = todo.status ? "line-through" : "";
   return (
     <div className="Card">
@@ -16,7 +16,7 @@ const Todo: FC<Props> = ({ todo, updateTodo }) => {
       </div>
       <button
         type="submit"
-        onClick={() => updateTodo(todo.id)}
+        onClick={() => updateToDo(todo.id)}
         className={todo.status ? "hide-button" : "Card--button"}
       >
         Complete

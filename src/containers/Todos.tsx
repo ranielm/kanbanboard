@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import { TodoContextType, ITodo } from "../types/todo";
-import { TodoContext } from "../context/todoContext";
-import Todo from "../components/Todo";
+import { ToDoContextType, IToDo } from "../types/ToDo";
+import { ToDoContext } from "../context/ToDoContext";
+import Todo from "../components/ToDo";
 
 const Todos = () => {
-  const { todos, updateTodo } = useContext(TodoContext) as TodoContextType;
+  const { todos, updateToDo } = useContext(ToDoContext) as ToDoContextType;
   return (
     <>
-      {todos.map((todo: ITodo) => (
-        <Todo key={todo.id} updateTodo={updateTodo} todo={todo} />
+      {todos.map((todo: IToDo) => (
+        <Todo key={todo.id} updateToDo={updateToDo} todo={todo} />
       ))}
     </>
   );

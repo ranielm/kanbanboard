@@ -1,21 +1,21 @@
 import { Routes, Route } from "react-router-dom";
 import KanbanBoard from "./pages/KanbanBoard";
-import TodoProvider from "./context/todoContext";
-import Todos from "./containers/Todos";
-import AddTodo from "./components/AddTodo";
+import ToDoProvider from "./context/ToDoContext";
+import ToDos from "./containers/ToDos";
+import AddTodo from "./components/AddToDo";
 
 const App = () => {
   return (
-    <TodoProvider>
+    <ToDoProvider>
       <main className="App">
-        <h1>My Todos</h1>
+        <h1>My ToDos</h1>
         <AddTodo />
-        <Todos />
+        <ToDos />
       </main>
       <Routes>
         <Route path="/" element={<KanbanBoard />} />
       </Routes>
-    </TodoProvider>
+    </ToDoProvider>
   );
 };
 
