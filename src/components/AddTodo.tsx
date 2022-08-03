@@ -1,14 +1,14 @@
 import { FC, useContext, useState, FormEvent, useId } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ToDoContext } from "../context/ToDoContext";
-import { ToDoContextType, IToDo } from "../types/ToDo";
+import { TodoContext } from "../context/todoContext";
+import { TodoContextType, ITodo } from "../types/todo";
 
 const AddTodo: FC = () => {
   const titleId = useId();
   const descriptionId = useId();
-  const { saveToDo } = useContext(ToDoContext) as ToDoContextType;
+  const { saveToDo } = useContext(TodoContext) as TodoContextType;
 
-  const [formData, setFormData] = useState<IToDo>({
+  const [formData, setFormData] = useState<ITodo>({
     id: uuidv4(),
     title: "",
     description: "",
@@ -27,7 +27,7 @@ const AddTodo: FC = () => {
     setFormData(newToDo);
   };
 
-  const handlesaveToDo = (event: FormEvent, handleFormData: IToDo) => {
+  const handlesaveToDo = (event: FormEvent, handleFormData: ITodo) => {
     event.preventDefault();
     saveToDo(handleFormData);
   };

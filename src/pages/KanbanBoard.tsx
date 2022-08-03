@@ -23,7 +23,7 @@ const KanbanBoard = () => {
         divider={<Divider orientation="vertical" flexItem />}
         spacing={2}
       >
-        <GenerateCard boardName="ToDo" cards={cardsToDo} />
+        <GenerateCard boardName="Todo" cards={cardsToDo} />
         <GenerateCard boardName="Doing" cards={cardsDoing} />
         <GenerateCard boardName="Done" cards={cardsDone} />
       </Stack>

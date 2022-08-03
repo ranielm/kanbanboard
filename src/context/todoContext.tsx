@@ -1,18 +1,18 @@
 import { createContext, FC, ReactNode, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ToDoContextType, IToDo } from "../types/ToDo";
+import { TodoContextType, ITodo } from "../types/todo";
 
-export const ToDoContext = createContext<ToDoContextType | null>(null);
+export const TodoContext = createContext<TodoContextType | null>(null);
 
 type Props = {
   children: ReactNode;
 };
 
 const TodoProvider: FC<Props> = ({ children }) => {
-  const [todos, setTodos] = useState<IToDo[]>([]);
+  const [todos, setTodos] = useState<ITodo[]>([]);
 
-  const saveToDo = (todo: IToDo) => {
-    const newToDo: IToDo = {
+  const saveToDo = (todo: ITodo) => {
+    const newToDo: ITodo = {
       id: uuidv4(),
       title: todo.title,
       description: todo.description,
@@ -40,7 +40,7 @@ const TodoProvider: FC<Props> = ({ children }) => {
     [todos]
   );
 
-  return <ToDoContext.Provider value={value}>{children}</ToDoContext.Provider>;
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 };
 
 export default TodoProvider;
