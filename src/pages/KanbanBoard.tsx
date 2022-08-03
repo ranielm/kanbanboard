@@ -6,10 +6,12 @@ import GenerateCard from "../components/GenerateCard";
 import { Card } from "../interfaces/Card";
 
 const KanbanBoard = () => {
-  const [cardsToDo, setCardsToDo] = useState<Card[]>([]);
-  const [cardsDoing, setCardsDoing] = useState<Card[]>([]);
-  const [cardsDone, setCardsDone] = useState<Card[]>([]);
-  console.log(setCardsToDo, setCardsDoing, setCardsDone);
+  // const [cardsToDo, setCardsToDo] = useState<Card[]>([]);
+  // const [cardsDoing, setCardsDoing] = useState<Card[]>([]);
+  // const [cardsDone, setCardsDone] = useState<Card[]>([]);
+  const [cardsToDo] = useState<Card[]>([]);
+  const [cardsDoing] = useState<Card[]>([]);
+  const [cardsDone] = useState<Card[]>([]);
 
   return (
     <>
