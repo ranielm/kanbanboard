@@ -2,7 +2,7 @@
 import { Divider, Stack, Typography } from "@mui/material";
 import { useContext } from "react";
 // TODO: criar exportador de componentes
-import GenerateCard from "../components/GenerateCard";
+import Todos from "../containers/Todos";
 import { TodoContext } from "../context/todoContext";
 import { TodoContextType } from "../types/todo";
 
@@ -21,9 +21,9 @@ const KanbanBoard = () => {
         divider={<Divider orientation="vertical" flexItem />}
         spacing={2}
       >
-        <GenerateCard boardName="Todo" todos={cardsTodo} />
-        <GenerateCard boardName="Doing" todos={cardsDoing} />
-        <GenerateCard boardName="Done" todos={cardsDone} />
+        <Todos boardName="Todo" todos={cardsTodo} />
+        <Todos boardName="Doing" todos={cardsDoing} />
+        <Todos boardName="Done" todos={cardsDone} />
       </Stack>
     </>
   );

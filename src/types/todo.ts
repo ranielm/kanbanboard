@@ -11,4 +11,5 @@ export type TodoContextType = {
   cardsDone: ITodo[];
   saveTodo: (todo: ITodo) => void;
   updateTodo: (todo: ITodo) => void;
+  deleteTodo: (todo: ITodo) => void;
 };

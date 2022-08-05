@@ -63,13 +63,43 @@ const TodoProvider: FC<Props> = ({ children }) => {
     }
   };
 
+  // TODO: implementar essa função
+  const deleteTodo = (todo: ITodo) => {
+    switch (todo.status) {
+      case "Doing":
+        cardsDoing.forEach((cardDoing, index) => {
+          if (cardDoing.id === todo.id) {
+            cardsDoing[index] = cardDoing;
+            setCardsDoing([...cardsDoing]);
+          }
+        });
+        break;
+      case "Done":
+        cardsDone.forEach((cardDone, index) => {
+          if (cardDone.id === todo.id) {
+            cardsDone[index] = cardDone;
+            setCardsDone([...cardsDone]);
+          }
+        });
+        break;
+      default:
+        cardsTodo.forEach((cardTodo, index) => {
+          if (cardTodo.id === todo.id) {
+            cardsTodo[index] = cardTodo;
+            setCardsTodo([...cardsTodo]);
+          }
+        });
+        break;
+    }
+  };
   const value = useMemo(
     () => ({
       cardsTodo,
       cardsDoing,
       cardsDone,
       saveTodo,
-      updateTodo
+      updateTodo,
+      deleteTodo
     }),
     [cardsTodo, cardsDoing, cardsDone]
   );
