@@ -7,27 +7,27 @@ import {
   CardContent,
   Card as MaterialCard
 } from "@mui/material";
-import { Card } from "../interfaces/Card";
 import IconButton from "./IconButton";
 import TaskCard from "./TaskCard";
+import { ITodo } from "../types/todo";
 
 export type GenerateCardProps = {
   boardName: string;
-  cards: Card[];
+  todos: ITodo[];
 };
 
-const GenerateCard = ({ boardName, cards }: GenerateCardProps) => {
-  const dragStartHandler = (event: DragEvent<HTMLDivElement>, card: Card) => {
-    event.dataTransfer.setData("id", card.id);
-    event.dataTransfer.setData("title", card.title);
+const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
+  const dragStartHandler = (event: DragEvent<HTMLDivElement>, todo: ITodo) => {
+    event.dataTransfer.setData("id", todo.id);
+    event.dataTransfer.setData("title", todo.title);
     // TODO: adicionar erro caso não haja title ou content
-    event.dataTransfer.setData("content", card.title);
-    event.dataTransfer.setData("list", card.list);
+    event.dataTransfer.setData("title", todo.title);
+    event.dataTransfer.setData("status", todo.status);
   };
 
   const dropHandler = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    console.log(event.dataTransfer.getData("list"));
+    console.log(event.dataTransfer.getData("status"));
   };
 
   const allowDrop = (event: DragEvent<HTMLDivElement>) => {
@@ -47,15 +47,15 @@ const GenerateCard = ({ boardName, cards }: GenerateCardProps) => {
             {boardName}
           </Typography>
           <Divider />
-          {cards.map((card: Card) => (
+          {todos.map((todo: ITodo) => (
             <Box
-              key={card.id}
-              onDragStart={(event) => dragStartHandler(event, card)}
+              key={todo.id}
+              onDragStart={(event) => dragStartHandler(event, todo)}
               draggable
             >
               {boardName}
-              {card.list}
-              <TaskCard card={card} changeTitle={changeTitle} />
+              {todo.status}
+              <TaskCard todo={todo} changeTitle={changeTitle} />
             </Box>
           ))}
         </CardContent>

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   Box,
   Card as MaterialCard,
@@ -6,8 +7,9 @@ import {
   TextField
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState } from "react";
 import IconButton from "./IconButton";
-import { Card } from "../interfaces/Card";
+import { ITodo } from "../types/todo";
 
 const theme = createTheme({
   components: {
@@ -20,11 +22,14 @@ const theme = createTheme({
 });
 
 export interface TaskCardProps {
-  card: Card;
+  todo: ITodo;
   changeTitle: (cardId: string, title: string) => void;
 }
 
-const TaskCard = ({ card, changeTitle }: TaskCardProps) => {
+const TaskCard = ({ todo, changeTitle }: TaskCardProps) => {
+  console.log(changeTitle);
+  const [title, setTitle] = useState(todo.title);
+  const [description, setDescription] = useState(todo.description);
   return (
     <Box sx={{ flexGrow: 1, minWidth: 275, mt: 2 }}>
       <MaterialCard variant="outlined">
@@ -39,19 +44,23 @@ const TaskCard = ({ card, changeTitle }: TaskCardProps) => {
                 <TextField
                   id="standard-textarea"
                   variant="standard"
-                  label={card.title}
-                  onChange={(e) => changeTitle(card.id, e.target.value)}
+                  label="Title"
                   placeholder="Enter the task name"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </Grid>
               <Grid item xs={1} sm={1} md={1}>
                 <TextField
                   id="outlined-multiline-static"
+                  label="Description"
                   placeholder="Enter the task subject"
+                  value={description}
                   multiline
                   variant="standard"
                   fullWidth
                   rows={4}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </Grid>
             </Grid>

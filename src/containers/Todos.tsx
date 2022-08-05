@@ -4,10 +4,10 @@ import { TodoContext } from "../context/todoContext";
 import Todo from "../components/Todo";
 
 const Todos = () => {
-  const { todos, updateTodo } = useContext(TodoContext) as TodoContextType;
+  const { cardsTodo, updateTodo } = useContext(TodoContext) as TodoContextType;
   return (
     <>
-      {todos.map((todo: ITodo) => (
+      {cardsTodo.map((todo: ITodo) => (
         <Todo key={todo.id} updateTodo={updateTodo} todo={todo} />
       ))}
     </>

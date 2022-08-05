@@ -7,11 +7,9 @@ import AddTodo from "./components/AddTodo";
 const App = () => {
   return (
     <TodoProvider>
-      <main className="App">
-        <h1>My Todos</h1>
-        <AddTodo />
-        <Todos />
-      </main>
+      <h1>My Todos</h1>
+      <AddTodo />
+      <Todos />
       <Routes>
         <Route path="/" element={<KanbanBoard />} />
       </Routes>

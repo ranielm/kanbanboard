@@ -12,7 +12,7 @@ const AddTodo: FC = () => {
     id: uuidv4(),
     title: "",
     description: "",
-    status: false
+    status: "Todo"
   });
 
   const handleTitle = (event: FormEvent<HTMLInputElement>): void => {
@@ -34,7 +34,6 @@ const AddTodo: FC = () => {
 
   return (
     <form
-      className="Form"
       onSubmit={(event) => {
         return handlesaveTodo(event, formData);
       }}

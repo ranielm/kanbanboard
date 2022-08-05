@@ -1,17 +1,15 @@
 /* eslint-disable no-console */
 import { Divider, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { useContext } from "react";
 // TODO: criar exportador de componentes
 import GenerateCard from "../components/GenerateCard";
-import { Card } from "../interfaces/Card";
+import { TodoContext } from "../context/todoContext";
+import { TodoContextType } from "../types/todo";
 
 const KanbanBoard = () => {
-  // const [cardsToDo, setCardsToDo] = useState<Card[]>([]);
-  // const [cardsDoing, setCardsDoing] = useState<Card[]>([]);
-  // const [cardsDone, setCardsDone] = useState<Card[]>([]);
-  const [cardsToDo] = useState<Card[]>([]);
-  const [cardsDoing] = useState<Card[]>([]);
-  const [cardsDone] = useState<Card[]>([]);
+  const { cardsTodo } = useContext(TodoContext) as TodoContextType;
+  const { cardsDoing } = useContext(TodoContext) as TodoContextType;
+  const { cardsDone } = useContext(TodoContext) as TodoContextType;
 
   return (
     <>
@@ -23,9 +21,9 @@ const KanbanBoard = () => {
         divider={<Divider orientation="vertical" flexItem />}
         spacing={2}
       >
-        <GenerateCard boardName="Todo" cards={cardsToDo} />
-        <GenerateCard boardName="Doing" cards={cardsDoing} />
-        <GenerateCard boardName="Done" cards={cardsDone} />
+        <GenerateCard boardName="Todo" todos={cardsTodo} />
+        <GenerateCard boardName="Doing" todos={cardsDoing} />
+        <GenerateCard boardName="Done" todos={cardsDone} />
       </Stack>
     </>
   );

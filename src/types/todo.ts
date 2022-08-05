@@ -2,11 +2,13 @@ export interface ITodo {
   id: string;
   title: string;
   description: string;
-  status: boolean;
+  status: "Todo" | "Doing" | "Done";
 }
 
 export type TodoContextType = {
-  todos: ITodo[];
+  cardsTodo: ITodo[];
+  cardsDoing: ITodo[];
+  cardsDone: ITodo[];
   saveTodo: (todo: ITodo) => void;
-  updateTodo: (id: string) => void;
+  updateTodo: (todo: ITodo) => void;
 };
