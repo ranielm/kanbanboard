@@ -7,9 +7,7 @@ import { TodoContext } from "../context/todoContext";
 import { TodoContextType } from "../types/todo";
 
 const KanbanBoard = () => {
-  const { cardsTodo } = useContext(TodoContext) as TodoContextType;
-  const { cardsDoing } = useContext(TodoContext) as TodoContextType;
-  const { cardsDone } = useContext(TodoContext) as TodoContextType;
+  const { todos } = useContext(TodoContext) as TodoContextType;
 
   return (
     <>
@@ -21,9 +19,9 @@ const KanbanBoard = () => {
         divider={<Divider orientation="vertical" flexItem />}
         spacing={2}
       >
-        <Todos boardName="Todo" todos={cardsTodo} />
-        <Todos boardName="Doing" todos={cardsDoing} />
-        <Todos boardName="Done" todos={cardsDone} />
+        <Todos boardName="Todo" todos={todos} />
+        <Todos boardName="Doing" todos={todos} />
+        <Todos boardName="Done" todos={todos} />
       </Stack>
     </>
   );

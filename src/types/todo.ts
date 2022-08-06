@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ITodo {
   id: string;
   title: string;
@@ -7,10 +9,10 @@ export interface ITodo {
 }
 
 export type TodoContextType = {
-  cardsTodo: ITodo[];
-  cardsDoing: ITodo[];
-  cardsDone: ITodo[];
+  todos: ITodo[];
+  todoForDrop: ITodo;
+  setTodoForDrop: Dispatch<SetStateAction<ITodo>>;
   saveTodo: (todo: ITodo) => void;
-  updateTodo: (todo: ITodo) => ITodo;
+  updateTodo: (todo: ITodo) => void;
   deleteTodo: (todo: ITodo) => void;
 };
