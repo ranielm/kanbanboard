@@ -22,16 +22,17 @@ export type GenerateCardProps = {
 const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
   const { saveTodo } = useContext(TodoContext) as TodoContextType;
   const dragStartHandler = (event: DragEvent<HTMLDivElement>, todo: ITodo) => {
-    event.dataTransfer.setData("id", todo.id);
-    event.dataTransfer.setData("title", todo.title);
+    console.log("todo: ", todo);
     // TODO: adicionar erro caso não haja title ou content
-    event.dataTransfer.setData("title", todo.title);
+    event.dataTransfer.setData("id", todo.id);
     event.dataTransfer.setData("status", todo.status);
   };
 
   const dropHandler = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
+    console.log(event.dataTransfer.getData("id"));
     console.log(event.dataTransfer.getData("status"));
+    console.log(boardName);
   };
 
   const allowDrop = (event: DragEvent<HTMLDivElement>) => {
@@ -39,14 +40,13 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
   };
 
   const handleSaveTodo = () => {
-    console.log("newBlankTodo --");
-
     const newBlankTodo: ITodo = {
       id: uuidv4(),
       title: "",
       description: "",
       status: "Todo"
     };
+
     console.log("newBlankTodo: ", newBlankTodo);
     saveTodo(newBlankTodo);
   };

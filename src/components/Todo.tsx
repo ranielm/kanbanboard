@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 import {
   Box,
@@ -28,22 +29,18 @@ export interface TodoProps {
 
 const Todo = ({ todo }: TodoProps) => {
   const [todoForm, setTodoForm] = useState(todo);
-  const { deleteTodo } = useContext(TodoContext) as TodoContextType;
+  const { deleteTodo, updateTodo } = useContext(TodoContext) as TodoContextType;
 
-  const handleTitle = (title: string) => {
-    const updateTodo = { ...todoForm };
-    updateTodo.title = title;
-    setTodoForm(updateTodo);
-  };
+  const handleValues = (type: "title" | "description", value: string) => {
+    const tempTodoForm = { ...todoForm };
 
-  const handleDescription = (description: string) => {
-    const updateTodo = { ...todoForm };
-    updateTodo.description = description;
-    setTodoForm(updateTodo);
-  };
+    type === "title"
+      ? (tempTodoForm.title = value)
+      : (tempTodoForm.description = value);
 
-  const handleDeleteTodo = () => {
-    deleteTodo(todoForm);
+    setTodoForm(tempTodoForm);
+    console.log(todoForm);
+    updateTodo(tempTodoForm);
   };
 
   return (
@@ -63,7 +60,7 @@ const Todo = ({ todo }: TodoProps) => {
                   label="Title"
                   placeholder="Enter the task name"
                   value={todoForm.title}
-                  onChange={(e) => handleTitle(e.target.value)}
+                  onChange={(e) => handleValues("title", e.target.value)}
                 />
               </Grid>
               <Grid item xs={1} sm={1} md={1}>
@@ -76,13 +73,13 @@ const Todo = ({ todo }: TodoProps) => {
                   variant="standard"
                   fullWidth
                   rows={2}
-                  onChange={(e) => handleDescription(e.target.value)}
+                  onChange={(e) => handleValues("description", e.target.value)}
                 />
               </Grid>
             </Grid>
           </ThemeProvider>
           <Box sx={{ mt: 0, mb: 0 }}>
-            <DeleteIcon onClick={handleDeleteTodo} />
+            <DeleteIcon onClick={() => deleteTodo(todoForm)} />
           </Box>
         </CardContent>
       </MaterialCard>

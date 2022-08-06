@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createContext, FC, ReactNode, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { TodoContextType, ITodo } from "../types/todo";
@@ -35,12 +36,15 @@ const TodoProvider: FC<Props> = ({ children }) => {
   };
 
   const updateTodo = (todo: ITodo) => {
+    console.log(todo);
+
     switch (todo.status) {
       case "Doing":
         cardsDoing.forEach((cardDoing, index) => {
           if (cardDoing.id === todo.id) {
             cardsDoing[index] = cardDoing;
             setCardsDoing([...cardsDoing]);
+            console.log(cardsDoing);
           }
         });
         break;
