@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { createContext, FC, ReactNode, useMemo, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { TodoContextType, ITodo } from "../types/todo";
 
 export const TodoContext = createContext<TodoContextType | null>(null);
@@ -16,15 +15,26 @@ const TodoProvider: FC<Props> = ({ children }) => {
 
   const saveTodo = (todo: ITodo) => {
     const newTodo: ITodo = {
-      id: uuidv4(),
+      id: todo.id,
       title: todo.title,
       description: todo.description,
       status: todo.status
     };
 
+    let exists = false;
+
+    console.log(todo.id);
     switch (todo.status) {
       case "Doing":
-        setCardsDoing((prevTodos) => [...prevTodos, newTodo]);
+        cardsDoing.forEach((cardDoing) => {
+          if (cardDoing.id === todo.id) {
+            exists = true;
+          }
+        });
+        console.log(exists);
+        if (exists === false) {
+          setCardsDoing((prevTodos) => [...prevTodos, newTodo]);
+        }
         break;
       case "Done":
         setCardsDone((prevTodos) => [...prevTodos, newTodo]);
@@ -61,10 +71,6 @@ const TodoProvider: FC<Props> = ({ children }) => {
           if (cardTodo.id === todo.id) {
             cardsTodo[index] = todo;
             setCardsTodo([...cardsTodo]);
-            // if (updateBoards === true) {
-            //   cardsTodo[index].title = cardTodo.title;
-            //   cardsTodo[index].description = cardTodo.description;
-            // }
             todoEdited = cardTodo;
           }
         });
