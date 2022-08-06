@@ -3,6 +3,7 @@ export interface ITodo {
   title: string;
   description: string;
   status: "Todo" | "Doing" | "Done";
+  nextBoard?: "Todo" | "Doing" | "Done";
 }
 
 export type TodoContextType = {
@@ -10,6 +11,6 @@ export type TodoContextType = {
   cardsDoing: ITodo[];
   cardsDone: ITodo[];
   saveTodo: (todo: ITodo) => void;
-  updateTodo: (todo: ITodo) => void;
+  updateTodo: (todo: ITodo) => ITodo;
   deleteTodo: (todo: ITodo) => void;
 };

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 import {
   Box,
@@ -29,17 +28,22 @@ export interface TodoProps {
 
 const Todo = ({ todo }: TodoProps) => {
   const [todoForm, setTodoForm] = useState(todo);
+  const [title, setTitle] = useState(todo.title);
+  const [description, setDescription] = useState(todo.description);
   const { deleteTodo, updateTodo } = useContext(TodoContext) as TodoContextType;
 
   const handleValues = (type: "title" | "description", value: string) => {
     const tempTodoForm = { ...todoForm };
 
-    type === "title"
-      ? (tempTodoForm.title = value)
-      : (tempTodoForm.description = value);
+    if (type === "title") {
+      tempTodoForm.title = value;
+      setTitle(value);
+    } else {
+      tempTodoForm.description = value;
+      setDescription(value);
+    }
 
     setTodoForm(tempTodoForm);
-    console.log(todoForm);
     updateTodo(tempTodoForm);
   };
 
@@ -59,7 +63,7 @@ const Todo = ({ todo }: TodoProps) => {
                   variant="standard"
                   label="Title"
                   placeholder="Enter the task name"
-                  value={todoForm.title}
+                  value={title}
                   onChange={(e) => handleValues("title", e.target.value)}
                 />
               </Grid>
@@ -68,7 +72,7 @@ const Todo = ({ todo }: TodoProps) => {
                   id="outlined-multiline-static"
                   label="Description"
                   placeholder="Enter the task subject"
-                  value={todoForm.description}
+                  value={description}
                   multiline
                   variant="standard"
                   fullWidth

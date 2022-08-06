@@ -15,14 +15,13 @@ import { ITodo, TodoContextType } from "../types/todo";
 import { TodoContext } from "../context/todoContext";
 
 export type GenerateCardProps = {
-  boardName: string;
+  boardName: "Todo" | "Doing" | "Done";
   todos: ITodo[];
 };
 
 const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
-  const { saveTodo } = useContext(TodoContext) as TodoContextType;
+  const { saveTodo, updateTodo } = useContext(TodoContext) as TodoContextType;
   const dragStartHandler = (event: DragEvent<HTMLDivElement>, todo: ITodo) => {
-    console.log("todo: ", todo);
     // TODO: adicionar erro caso não haja title ou content
     event.dataTransfer.setData("id", todo.id);
     event.dataTransfer.setData("status", todo.status);
@@ -30,9 +29,23 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
 
   const dropHandler = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    console.log(event.dataTransfer.getData("id"));
-    console.log(event.dataTransfer.getData("status"));
-    console.log(boardName);
+
+    const dragTodo: ITodo = {
+      id: event.dataTransfer.getData("id"),
+      title: "",
+      description: "",
+      status: "Todo"
+    };
+
+    if (event.dataTransfer.getData("status") === "Doing") {
+      dragTodo.status = "Doing";
+    } else if (event.dataTransfer.getData("status") === "Done") {
+      dragTodo.status = "Done";
+    }
+
+    const todo = updateTodo(dragTodo);
+    todo.status = boardName;
+    saveTodo(todo);
   };
 
   const allowDrop = (event: DragEvent<HTMLDivElement>) => {
@@ -47,7 +60,6 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
       status: "Todo"
     };
 
-    console.log("newBlankTodo: ", newBlankTodo);
     saveTodo(newBlankTodo);
   };
 

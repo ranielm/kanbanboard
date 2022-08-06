@@ -35,36 +35,42 @@ const TodoProvider: FC<Props> = ({ children }) => {
     }
   };
 
-  const updateTodo = (todo: ITodo) => {
-    console.log(todo);
-
+  const updateTodo = (todo: ITodo): ITodo => {
+    let todoEdited = todo;
     switch (todo.status) {
       case "Doing":
         cardsDoing.forEach((cardDoing, index) => {
           if (cardDoing.id === todo.id) {
-            cardsDoing[index] = cardDoing;
+            cardsDoing[index] = todo;
             setCardsDoing([...cardsDoing]);
-            console.log(cardsDoing);
+            todoEdited = cardDoing;
           }
         });
         break;
       case "Done":
         cardsDone.forEach((cardDone, index) => {
           if (cardDone.id === todo.id) {
-            cardsDone[index] = cardDone;
+            cardsDone[index] = todo;
             setCardsDone([...cardsDone]);
+            todoEdited = cardDone;
           }
         });
         break;
       default:
         cardsTodo.forEach((cardTodo, index) => {
           if (cardTodo.id === todo.id) {
-            cardsTodo[index] = cardTodo;
+            cardsTodo[index] = todo;
             setCardsTodo([...cardsTodo]);
+            // if (updateBoards === true) {
+            //   cardsTodo[index].title = cardTodo.title;
+            //   cardsTodo[index].description = cardTodo.description;
+            // }
+            todoEdited = cardTodo;
           }
         });
         break;
     }
+    return todoEdited;
   };
 
   // TODO: implementar essa função
