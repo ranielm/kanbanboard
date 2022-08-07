@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { createContext, FC, ReactNode, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { TodoContextType, ITodo } from "../types/todo";
+import { TodoContextType, ITodo, ISnackbar } from "../types/todo";
 
 export const TodoContext = createContext<TodoContextType | null>(null);
 
@@ -20,12 +20,24 @@ const newBlankTodo: ITodo = {
 const TodoProvider: FC<Props> = ({ children }) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [todoForDrop, setTodoForDrop] = useState<ITodo>(newBlankTodo);
-  const [error, setError] = useState({ message: "", open: false });
+  const [snackbar, setSnackbar] = useState<ISnackbar>({
+    message: "",
+    open: false,
+    type: "error"
+  });
 
   const addNewTodo = () => {
     newBlankTodo.id = uuidv4();
     const found = todos.some((todo) => todo.id === newBlankTodo.id);
-    if (!found) setTodos([...todos, newBlankTodo]);
+    if (!found) {
+      setTodos([...todos, newBlankTodo]);
+    } else {
+      setSnackbar({
+        message: "There is already a Todo empty",
+        open: true,
+        type: "warning"
+      });
+    }
   };
 
   const updateTodo = (todo: ITodo) => {
@@ -34,6 +46,11 @@ const TodoProvider: FC<Props> = ({ children }) => {
         todos[index] = todo;
         if (todo.title === "" && todo.description === "") {
           todos[index].status = todo.previous;
+          setSnackbar({
+            message: "Fill in the title and description of the Todo",
+            open: true,
+            type: "error"
+          });
         }
         setTodos([...todos]);
         console.log(todos);
@@ -57,13 +74,13 @@ const TodoProvider: FC<Props> = ({ children }) => {
       todoForDrop,
       setTodoForDrop,
       newBlankTodo,
-      error,
-      setError,
+      snackbar,
+      setSnackbar,
       addNewTodo,
       updateTodo,
       deleteTodo
     }),
-    [todos, todoForDrop, error]
+    [todos, todoForDrop, snackbar]
   );
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
