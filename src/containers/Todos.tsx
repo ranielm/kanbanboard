@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { DragEvent, useContext } from "react";
-import { v4 as uuidv4 } from "uuid";
 import {
   Divider,
   Typography,
@@ -20,19 +19,19 @@ export type GenerateCardProps = {
 };
 
 const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
-  const { saveTodo, todoForDrop, setTodoForDrop, updateTodo } = useContext(
+  const { addNewTodo, todoForDrop, setTodoForDrop, updateTodo } = useContext(
     TodoContext
   ) as TodoContextType;
 
   const dragStartHandler = (event: DragEvent<HTMLDivElement>, todo: ITodo) => {
-    setTodoForDrop(todo);
+    const startTodo = todo;
+    startTodo.previous = boardName;
+    setTodoForDrop(startTodo);
   };
 
   const dropHandler = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-
     todoForDrop.status = boardName;
-
     updateTodo(todoForDrop);
   };
 
@@ -41,27 +40,20 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
   };
 
   const handleSaveTodo = () => {
-    const newBlankTodo: ITodo = {
-      id: uuidv4(),
-      title: "",
-      description: "",
-      status: "Todo"
-    };
-
-    saveTodo(newBlankTodo);
+    addNewTodo();
   };
 
   const verifyBoard = (todo: ITodo) => {
-    return todo.status === boardName ? (
-      <Box
-        key={todo.id}
-        onDragStart={(event) => dragStartHandler(event, todo)}
-        draggable
-      >
-        <Todo todo={todo} />
-      </Box>
-    ) : (
-      ""
+    return (
+      todo.status === boardName && (
+        <Box
+          key={todo.id}
+          onDragStart={(event) => dragStartHandler(event, todo)}
+          draggable
+        >
+          <Todo todo={todo} />
+        </Box>
+      )
     );
   };
 

@@ -9,24 +9,34 @@ type Props = {
   children: ReactNode;
 };
 
+const newBlankTodo: ITodo = {
+  id: uuidv4(),
+  title: "",
+  description: "",
+  status: "Todo",
+  previous: "Todo"
+};
+
 const TodoProvider: FC<Props> = ({ children }) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
-  const [todoForDrop, setTodoForDrop] = useState<ITodo>({
-    id: uuidv4(),
-    title: "",
-    description: "",
-    status: "Todo"
-  });
+  const [todoForDrop, setTodoForDrop] = useState<ITodo>(newBlankTodo);
+  const [error, setError] = useState({ message: "", open: false });
 
-  const saveTodo = (todo: ITodo) => {
-    setTodos((prevTodos) => [...prevTodos, todo]);
+  const addNewTodo = () => {
+    newBlankTodo.id = uuidv4();
+    const found = todos.some((todo) => todo.id === newBlankTodo.id);
+    if (!found) setTodos([...todos, newBlankTodo]);
   };
 
   const updateTodo = (todo: ITodo) => {
     todos.forEach((singleTodo, index) => {
       if (singleTodo.id === todo.id) {
         todos[index] = todo;
+        if (todo.title === "" && todo.description === "") {
+          todos[index].status = todo.previous;
+        }
         setTodos([...todos]);
+        console.log(todos);
       }
     });
   };
@@ -46,11 +56,14 @@ const TodoProvider: FC<Props> = ({ children }) => {
       todos,
       todoForDrop,
       setTodoForDrop,
-      saveTodo,
+      newBlankTodo,
+      error,
+      setError,
+      addNewTodo,
       updateTodo,
       deleteTodo
     }),
-    [todos, todoForDrop]
+    [todos, todoForDrop, error]
   );
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;

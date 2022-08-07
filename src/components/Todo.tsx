@@ -44,6 +44,7 @@ const Todo = ({ todo }: TodoProps) => {
     }
 
     setTodoForm(tempTodoForm);
+
     updateTodo(tempTodoForm);
   };
 
