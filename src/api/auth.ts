@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { ILoginRequest, ITodo } from "../types/todo";
 import axiosInstance from "./api";
 
-const getCards = async (): Promise<ITodo[]> => {
+const requestCards = async (): Promise<ITodo[]> => {
   const response = await axiosInstance.get("/cards");
   return response.data;
 };
@@ -14,7 +14,7 @@ const loginRequest: ILoginRequest = {
   senha: "lets@123"
 };
 
-const authAndCards = async () => {
+const authAndCards = async (): Promise<ITodo[]> => {
   // TODO: verificar se token existe e se é ainda é válido
   const response = await axiosInstance.post("/login", loginRequest);
   const decodedToken = jwt_decode(response.data);
@@ -35,9 +35,10 @@ const authAndCards = async () => {
     console.log("Token expired!");
   } else {
     axiosInstance.defaults.headers.common.Authorization = response.data;
-    const cardsResponse = await getCards();
-    console.log("cardsResponse: ", cardsResponse);
+    const cardsResponse = await requestCards();
+    return cardsResponse;
   }
+  return [];
 };
 
 export default authAndCards;

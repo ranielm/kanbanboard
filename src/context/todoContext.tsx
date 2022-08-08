@@ -1,6 +1,14 @@
 /* eslint-disable no-console */
-import { createContext, FC, ReactNode, useMemo, useState } from "react";
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import { v4 as uuidv4 } from "uuid";
+import auth from "../api/auth";
 import { TodoContextType, ITodo, ISnackbar } from "../types/todo";
 
 export const TodoContext = createContext<TodoContextType | null>(null);
@@ -19,6 +27,12 @@ const newBlankTodo: ITodo = {
 
 const TodoProvider: FC<Props> = ({ children }) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const getCards = async (): Promise<ITodo[]> => {
+    const response = await auth();
+    setTodos(response);
+    return response;
+  };
+
   const [todoForDrop, setTodoForDrop] = useState<ITodo>(newBlankTodo);
   const [snackbar, setSnackbar] = useState<ISnackbar>({
     message: "",
@@ -66,6 +80,10 @@ const TodoProvider: FC<Props> = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    getCards();
+  });
+
   const value = useMemo(
     () => ({
       todos,
@@ -75,6 +93,7 @@ const TodoProvider: FC<Props> = ({ children }) => {
       snackbar,
       setSnackbar,
       addNewTodo,
+      setTodos,
       updateTodo,
       deleteTodo
     }),

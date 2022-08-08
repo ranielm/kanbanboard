@@ -29,7 +29,6 @@ const darkTheme = createTheme({
 });
 
 const KanbanBoard = () => {
-  console.log("KanbanBoard");
   const { todos } = useContext(TodoContext) as TodoContextType;
 
   return (
