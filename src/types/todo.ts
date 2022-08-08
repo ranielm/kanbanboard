@@ -31,7 +31,7 @@ export type TodoContextType = {
   setTodoForDrop: Dispatch<SetStateAction<ITodo>>;
   setSnackbar: Dispatch<SetStateAction<ISnackbar>>;
   setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
-  addTodo: () => void;
+  addTodo: (todo: ITodo) => void;
   updateTodo: (todo: ITodo) => void;
   deleteTodo: (todo: ITodo) => void;
   saveTodoAPI: (todo: ITodo) => void;

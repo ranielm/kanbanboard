@@ -3,11 +3,7 @@
 import jwt_decode from "jwt-decode";
 import { ILoginRequest, ITodo } from "../types/todo";
 import axiosInstance from "./api";
-
-const requestCards = async (): Promise<ITodo[]> => {
-  const response = await axiosInstance.get("/cards");
-  return response.data;
-};
+import { getTodos } from "./cards";
 
 const loginRequest: ILoginRequest = {
   login: "letscode",
@@ -35,7 +31,7 @@ const authAndCards = async (): Promise<ITodo[]> => {
     console.log("Token expired!");
   } else {
     axiosInstance.defaults.headers.common.Authorization = response.data;
-    const cardsResponse = await requestCards();
+    const cardsResponse = await getTodos();
     return cardsResponse;
   }
   return [];

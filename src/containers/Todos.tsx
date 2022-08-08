@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { DragEvent, Fragment, useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 import {
   Divider,
   Typography,
@@ -41,8 +42,16 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
     event.preventDefault();
   };
 
+  const newBlankTodo: ITodo = {
+    id: uuidv4(),
+    titulo: " ",
+    conteudo: " ",
+    lista: "ToDo",
+    previous: "ToDo"
+  };
+
   const handleSaveTodo = () => {
-    addTodo();
+    addTodo(newBlankTodo);
   };
 
   const pointer = { cursor: "pointer" };
