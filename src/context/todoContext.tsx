@@ -82,7 +82,7 @@ const TodoProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     getCards();
-  });
+  }, []);
 
   const value = useMemo(
     () => ({
