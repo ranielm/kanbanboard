@@ -36,8 +36,6 @@ const TodoProvider: FC<Props> = ({ children }) => {
 
   const found = async (id: string): Promise<boolean> => {
     const todoForApi = await getTodos();
-    console.log(todoForApi);
-    console.log(todoForApi.some((todo) => todo.id === id));
     return todoForApi.some((todo) => todo.id === id);
   };
 
@@ -50,12 +48,8 @@ const TodoProvider: FC<Props> = ({ children }) => {
 
   // CONTEXT
   const addTodo = async (todo: ITodo) => {
-    console.log(todo);
-
     if (!(await found(todo.id))) {
       const newTodo = await saveTodo(todo);
-      console.log(newTodo);
-
       setTodos([...todos, newTodo]);
     } else {
       await editTodo(todo);
@@ -89,28 +83,6 @@ const TodoProvider: FC<Props> = ({ children }) => {
     });
   };
 
-  // API
-
-  const editTodoAPI = async (todo: ITodo) => {
-    await editTodo(todo);
-  };
-
-  const saveTodoAPI = async (todo: ITodo) => {
-    console.log(todo.id);
-    const todosInAPI = await getTodos();
-    await saveTodo(todo);
-    console.log(todosInAPI);
-    // const found = (await getTodos()).some(
-    //   (singleTodo) => singleTodo.id === todo.id
-    // );
-    // console.log(found);
-    // if (!found) {
-    //   await saveTodo(todo);
-    // } else {
-    //   await editTodoAPI(todo);
-    // }
-  };
-
   useEffect(() => {
     getCards();
   }, []);
@@ -126,9 +98,7 @@ const TodoProvider: FC<Props> = ({ children }) => {
       setTodos,
       addTodo,
       updateTodo,
-      deleteTodo,
-      saveTodoAPI,
-      editTodoAPI
+      deleteTodo
     }),
     [todos, todoForDrop, snackbar]
   );

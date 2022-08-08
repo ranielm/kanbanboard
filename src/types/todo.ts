@@ -34,6 +34,4 @@ export type TodoContextType = {
   addTodo: (todo: ITodo) => void;
   updateTodo: (todo: ITodo) => void;
   deleteTodo: (todo: ITodo) => void;
-  saveTodoAPI: (todo: ITodo) => void;
-  editTodoAPI: (todo: ITodo) => void;
 };
