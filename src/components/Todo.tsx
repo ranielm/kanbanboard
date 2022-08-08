@@ -8,7 +8,6 @@ import {
   TextField,
   Tooltip
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useContext, useState } from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
@@ -16,16 +15,6 @@ import { ITodo, TodoContextType } from "../types/todo";
 import { TodoContext } from "../context/todoContext";
 
 const pointer = { cursor: "pointer" };
-
-const theme = createTheme({
-  components: {
-    MuiInput: {
-      defaultProps: {
-        disableUnderline: true
-      }
-    }
-  }
-});
 
 export interface TodoProps {
   todo: ITodo;
@@ -53,40 +42,38 @@ const Todo = ({ todo }: TodoProps) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, mt: 2 }}>
+    <Box sx={{ flexGrow: 3, mt: 2 }}>
       <MaterialCard variant="outlined">
         <CardContent>
-          <ThemeProvider theme={theme}>
-            <Grid
-              container
-              spacing={{ xs: 1, md: 1 }}
-              columns={{ xs: 1, sm: 1, md: 1 }}
-            >
-              <Grid item xs={1} sm={1} md={1}>
-                <TextField
-                  id="standard-textarea"
-                  variant="standard"
-                  label="Title"
-                  placeholder="Enter the task name"
-                  value={title}
-                  onChange={(e) => handleValues("title", e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={1} sm={1} md={1}>
-                <TextField
-                  id="outlined-multiline-static"
-                  label="Description"
-                  placeholder="Enter the task subject"
-                  value={description}
-                  multiline
-                  variant="standard"
-                  fullWidth
-                  rows={2}
-                  onChange={(e) => handleValues("description", e.target.value)}
-                />
-              </Grid>
+          <Grid
+            container
+            spacing={{ xs: 1, md: 1 }}
+            columns={{ xs: 1, sm: 1, md: 1 }}
+          >
+            <Grid item xs={1} sm={1} md={1}>
+              <TextField
+                id="standard-textarea"
+                variant="standard"
+                label="Title"
+                placeholder="Enter the task name"
+                value={title}
+                onChange={(e) => handleValues("title", e.target.value)}
+              />
             </Grid>
-          </ThemeProvider>
+            <Grid item xs={1} sm={1} md={1}>
+              <TextField
+                id="outlined-multiline-static"
+                label="Description"
+                placeholder="Enter the task subject"
+                value={description}
+                multiline
+                variant="standard"
+                fullWidth
+                rows={2}
+                onChange={(e) => handleValues("description", e.target.value)}
+              />
+            </Grid>
+          </Grid>
           <Box sx={{ mt: 0, mb: 0 }}>
             <Tooltip title="Save Todo">
               <IconButton style={pointer} onClick={() => deleteTodo(todoForm)}>

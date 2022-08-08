@@ -68,7 +68,7 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
           {todos.map((todo: ITodo) => verifyBoard(todo))}
         </CardContent>
         {boardName === "Todo" && (
-          <Box sx={{ ml: 2, mb: 3 }}>
+          <Box sx={{ ml: 3, mb: 3 }}>
             <Button
               variant="contained"
               endIcon={<AddCircleIcon />}
