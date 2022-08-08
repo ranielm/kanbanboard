@@ -4,6 +4,12 @@ export type BoardName = "ToDo" | "Doing" | "Done";
 
 export type AlertColor = "success" | "info" | "warning" | "error";
 
+// ILoginRequest
+export interface ILoginRequest {
+  login: string;
+  senha: string;
+}
+
 export interface ITodo {
   id: string;
   title: string;
