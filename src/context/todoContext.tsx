@@ -9,7 +9,7 @@ import {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import auth from "../api/auth";
-import persistTodo from "../api/cards";
+import { saveTodo, removeTodo, editTodo } from "../api/cards";
 import { TodoContextType, ITodo, ISnackbar } from "../types/todo";
 
 export const TodoContext = createContext<TodoContextType | null>(null);
@@ -41,7 +41,8 @@ const TodoProvider: FC<Props> = ({ children }) => {
     type: "error"
   });
 
-  const addNewTodo = () => {
+  // CONTEXT
+  const addTodo = () => {
     newBlankTodo.id = uuidv4();
     const found = todos.some((todo) => todo.id === newBlankTodo.id);
     if (!found) {
@@ -53,10 +54,6 @@ const TodoProvider: FC<Props> = ({ children }) => {
         type: "warning"
       });
     }
-  };
-
-  const saveTodo = async (todo: ITodo) => {
-    await persistTodo(todo);
   };
 
   const updateTodo = (todo: ITodo) => {
@@ -77,12 +74,22 @@ const TodoProvider: FC<Props> = ({ children }) => {
   };
 
   const deleteTodo = (todo: ITodo) => {
-    todos.forEach((singleTodo, index) => {
+    todos.forEach(async (singleTodo, index) => {
       if (singleTodo.id === todo.id) {
         todos.splice(index, 1);
+        await removeTodo(todo);
         setTodos([...todos]);
       }
     });
+  };
+
+  // API
+  const saveTodoAPI = async (todo: ITodo) => {
+    await saveTodo(todo);
+  };
+
+  const editTodoAPI = async (todo: ITodo) => {
+    await editTodo(todo);
   };
 
   useEffect(() => {
@@ -93,15 +100,16 @@ const TodoProvider: FC<Props> = ({ children }) => {
     () => ({
       todos,
       todoForDrop,
-      setTodoForDrop,
       newBlankTodo,
       snackbar,
+      setTodoForDrop,
       setSnackbar,
-      addNewTodo,
-      saveTodo,
       setTodos,
+      addTodo,
       updateTodo,
-      deleteTodo
+      deleteTodo,
+      saveTodoAPI,
+      editTodoAPI
     }),
     [todos, todoForDrop, snackbar]
   );

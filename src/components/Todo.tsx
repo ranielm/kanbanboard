@@ -24,7 +24,7 @@ const Todo = ({ todo }: TodoProps) => {
   const [todoForm, setTodoForm] = useState(todo);
   const [title, setTitle] = useState(todo.titulo);
   const [description, setDescription] = useState(todo.conteudo);
-  const { deleteTodo, updateTodo, saveTodo } = useContext(
+  const { saveTodoAPI, deleteTodo, updateTodo } = useContext(
     TodoContext
   ) as TodoContextType;
 
@@ -83,7 +83,7 @@ const Todo = ({ todo }: TodoProps) => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Save ToDo">
-              <IconButton style={pointer} onClick={() => saveTodo(todoForm)}>
+              <IconButton style={pointer} onClick={() => saveTodoAPI(todoForm)}>
                 <SaveOutlinedIcon />
               </IconButton>
             </Tooltip>

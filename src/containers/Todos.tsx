@@ -21,7 +21,7 @@ export type GenerateCardProps = {
 };
 
 const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
-  const { addNewTodo, todoForDrop, setTodoForDrop, updateTodo } = useContext(
+  const { addTodo, todoForDrop, setTodoForDrop, updateTodo } = useContext(
     TodoContext
   ) as TodoContextType;
 
@@ -42,7 +42,7 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
   };
 
   const handleSaveTodo = () => {
-    addNewTodo();
+    addTodo();
   };
 
   const pointer = { cursor: "pointer" };
