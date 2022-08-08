@@ -4,13 +4,18 @@ import {
   Card as MaterialCard,
   CardContent,
   Grid,
-  TextField
+  IconButton,
+  TextField,
+  Tooltip
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useContext, useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { ITodo, TodoContextType } from "../types/todo";
 import { TodoContext } from "../context/todoContext";
+
+const pointer = { cursor: "pointer" };
 
 const theme = createTheme({
   components: {
@@ -44,7 +49,6 @@ const Todo = ({ todo }: TodoProps) => {
     }
 
     setTodoForm(tempTodoForm);
-
     updateTodo(tempTodoForm);
   };
 
@@ -84,7 +88,16 @@ const Todo = ({ todo }: TodoProps) => {
             </Grid>
           </ThemeProvider>
           <Box sx={{ mt: 0, mb: 0 }}>
-            <DeleteIcon onClick={() => deleteTodo(todoForm)} />
+            <Tooltip title="Save Todo">
+              <IconButton style={pointer} onClick={() => deleteTodo(todoForm)}>
+                <SaveOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Remove Todo">
+              <IconButton style={pointer} onClick={() => deleteTodo(todoForm)}>
+                <DeleteOutlinedIcon />
+              </IconButton>
+            </Tooltip>
           </Box>
         </CardContent>
       </MaterialCard>

@@ -60,9 +60,12 @@ const TodoProvider: FC<Props> = ({ children }) => {
 
   // TODO: implementar essa função
   const deleteTodo = (todo: ITodo) => {
+    console.log("deleteTodo");
     todos.forEach((singleTodo, index) => {
+      console.log(todo.id);
+
       if (singleTodo.id === todo.id) {
-        todos[index] = todo;
+        todos.splice(index, 1);
         setTodos([...todos]);
       }
     });
