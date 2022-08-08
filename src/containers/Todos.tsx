@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { DragEvent, useContext } from "react";
+import { DragEvent, Fragment, useContext } from "react";
 import {
   Divider,
   Typography,
@@ -61,12 +61,24 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
     );
   };
 
+  const boardSize = () => {
+    let countBoards = 0;
+    todos.forEach((singleTodo) => {
+      if (singleTodo.status === boardName) {
+        countBoards += 1;
+      }
+    });
+    return countBoards;
+  };
+
   return (
     <Box onDragOver={allowDrop} onDrop={dropHandler}>
       <MaterialCard sx={{ width: 300 }} variant="outlined">
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {boardName}
+            <>
+              {boardName} | {boardSize()}
+            </>
           </Typography>
           <Divider />
           {todos.map((todo: ITodo) => verifyBoard(todo))}

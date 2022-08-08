@@ -53,17 +53,13 @@ const TodoProvider: FC<Props> = ({ children }) => {
           });
         }
         setTodos([...todos]);
-        console.log(todos);
       }
     });
   };
 
   // TODO: implementar essa função
   const deleteTodo = (todo: ITodo) => {
-    console.log("deleteTodo");
     todos.forEach((singleTodo, index) => {
-      console.log(todo.id);
-
       if (singleTodo.id === todo.id) {
         todos.splice(index, 1);
         setTodos([...todos]);
