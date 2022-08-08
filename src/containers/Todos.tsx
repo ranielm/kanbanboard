@@ -6,15 +6,17 @@ import {
   Box,
   CardContent,
   Card as MaterialCard,
-  Button
+  IconButton,
+  Tooltip,
+  Grid
 } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Todo from "../components/Todo";
 import { ITodo, TodoContextType } from "../types/todo";
 import { TodoContext } from "../context/todoContext";
 
 export type GenerateCardProps = {
-  boardName: "Todo" | "Doing" | "Done";
+  boardName: "ToDo" | "Doing" | "Done";
   todos: ITodo[];
 };
 
@@ -43,6 +45,8 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
     addNewTodo();
   };
 
+  const pointer = { cursor: "pointer" };
+
   const verifyBoard = (todo: ITodo) => {
     return (
       todo.status === boardName && (
@@ -67,16 +71,14 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
           <Divider />
           {todos.map((todo: ITodo) => verifyBoard(todo))}
         </CardContent>
-        {boardName === "Todo" && (
-          <Box sx={{ ml: 3, mb: 3 }}>
-            <Button
-              variant="contained"
-              endIcon={<AddCircleIcon />}
-              onClick={handleSaveTodo}
-            >
-              Add
-            </Button>
-          </Box>
+        {boardName === "ToDo" && (
+          <Grid container justifyContent="flex-end">
+            <Tooltip title="Add ToDo" sx={{ mr: 1, mb: 2 }}>
+              <IconButton style={pointer} onClick={() => handleSaveTodo()}>
+                <AddCircleOutlineOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+          </Grid>
         )}
       </MaterialCard>
     </Box>

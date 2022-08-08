@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-export type BoardName = "Todo" | "Doing" | "Done";
+export type BoardName = "ToDo" | "Doing" | "Done";
 
 export type AlertColor = "success" | "info" | "warning" | "error";
 

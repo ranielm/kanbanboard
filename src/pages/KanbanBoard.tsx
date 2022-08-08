@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 import {
+  AppBar,
+  Box,
   createTheme,
   Divider,
   Stack,
@@ -32,21 +34,26 @@ const KanbanBoard = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Stack sx={{ width: "100%" }} spacing={2}>
-        <Typography variant="h2" gutterBottom component="div">
+      <CustomizedSnackbars />
+      <AppBar position="static">
+        <Typography sx={{ mt: 1 }} align="center" gutterBottom variant="h4">
           Kanban Board
         </Typography>
-        <CustomizedSnackbars />
-        <Stack
-          direction="row"
-          divider={<Divider orientation="vertical" flexItem />}
-          spacing={2}
-        >
-          <Todos boardName="Todo" todos={todos} />
-          <Todos boardName="Doing" todos={todos} />
-          <Todos boardName="Done" todos={todos} />
-        </Stack>
-      </Stack>
+      </AppBar>
+      <Box display="flex" sx={{ mt: 2 }} alignItems="center">
+        <Box m="auto">
+          <Stack
+            sx={{ mt: 2 }}
+            direction={{ xs: "column", sm: "row" }}
+            spacing={{ xs: 1, sm: 2, md: 4 }}
+            divider={<Divider orientation="vertical" flexItem />}
+          >
+            <Todos boardName="ToDo" todos={todos} />
+            <Todos boardName="Doing" todos={todos} />
+            <Todos boardName="Done" todos={todos} />
+          </Stack>
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 };

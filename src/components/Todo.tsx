@@ -63,7 +63,7 @@ const Todo = ({ todo }: TodoProps) => {
             <Grid item xs={1} sm={1} md={1}>
               <TextField
                 id="outlined-multiline-static"
-                label="Description"
+                label="Content"
                 placeholder="Enter the task subject"
                 value={description}
                 multiline
@@ -74,18 +74,18 @@ const Todo = ({ todo }: TodoProps) => {
               />
             </Grid>
           </Grid>
-          <Box sx={{ mt: 0, mb: 0 }}>
-            <Tooltip title="Save Todo">
-              <IconButton style={pointer} onClick={() => deleteTodo(todoForm)}>
-                <SaveOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Remove Todo">
+          <Grid container justifyContent="flex-end">
+            <Tooltip title="Remove ToDo">
               <IconButton style={pointer} onClick={() => deleteTodo(todoForm)}>
                 <DeleteOutlinedIcon />
               </IconButton>
             </Tooltip>
-          </Box>
+            <Tooltip title="Save ToDo">
+              <IconButton style={pointer} onClick={() => deleteTodo(todoForm)}>
+                <SaveOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+          </Grid>
         </CardContent>
       </MaterialCard>
     </Box>

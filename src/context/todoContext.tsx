@@ -13,8 +13,8 @@ const newBlankTodo: ITodo = {
   id: uuidv4(),
   title: "",
   description: "",
-  status: "Todo",
-  previous: "Todo"
+  status: "ToDo",
+  previous: "ToDo"
 };
 
 const TodoProvider: FC<Props> = ({ children }) => {
@@ -33,7 +33,7 @@ const TodoProvider: FC<Props> = ({ children }) => {
       setTodos([...todos, newBlankTodo]);
     } else {
       setSnackbar({
-        message: "There is already a Todo empty",
+        message: "There is already a ToDo empty",
         open: true,
         type: "warning"
       });
@@ -44,10 +44,10 @@ const TodoProvider: FC<Props> = ({ children }) => {
     todos.forEach((singleTodo, index) => {
       if (singleTodo.id === todo.id) {
         todos[index] = todo;
-        if (todo.title === "" && todo.description === "") {
+        if (todo.title === "" || todo.description === "") {
           todos[index].status = todo.previous;
           setSnackbar({
-            message: "Fill in the title and description of the Todo",
+            message: "Fill in the title and content of the ToDo",
             open: true,
             type: "error"
           });
