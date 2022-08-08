@@ -1,5 +1,11 @@
 version: "3.8"
 services:
+  server:
+    build:
+      context: ./api
+      dockerfile: Dockerfile       
+    ports: ["5000:5000"]
+    volumes: ["./api:/usr/src/app/api", "/usr/src/app/api/node_modules"]       
   client:
     stdin_open: true
     build:

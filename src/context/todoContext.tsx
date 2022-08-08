@@ -57,7 +57,6 @@ const TodoProvider: FC<Props> = ({ children }) => {
     });
   };
 
-  // TODO: implementar essa função
   const deleteTodo = (todo: ITodo) => {
     todos.forEach((singleTodo, index) => {
       if (singleTodo.id === todo.id) {
