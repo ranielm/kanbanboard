@@ -4,7 +4,6 @@ export type BoardName = "ToDo" | "Doing" | "Done";
 
 export type AlertColor = "success" | "info" | "warning" | "error";
 
-// ILoginRequest
 export interface ILoginRequest {
   login: string;
   senha: string;
@@ -12,9 +11,9 @@ export interface ILoginRequest {
 
 export interface ITodo {
   id: string;
-  title: string;
-  description: string;
-  status: BoardName;
+  titulo: string;
+  conteudo: string;
+  lista: BoardName;
   previous: BoardName;
 }
 
@@ -33,6 +32,7 @@ export type TodoContextType = {
   setSnackbar: Dispatch<SetStateAction<ISnackbar>>;
   setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
   addNewTodo: () => void;
+  saveTodo: (todo: ITodo) => void;
   updateTodo: (todo: ITodo) => void;
   deleteTodo: (todo: ITodo) => void;
 };

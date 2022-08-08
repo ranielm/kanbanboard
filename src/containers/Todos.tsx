@@ -33,7 +33,7 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
 
   const dropHandler = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    todoForDrop.status = boardName;
+    todoForDrop.lista = boardName;
     updateTodo(todoForDrop);
   };
 
@@ -49,7 +49,7 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
 
   const verifyBoard = (todo: ITodo) => {
     return (
-      todo.status === boardName && (
+      todo.lista === boardName && (
         <Box
           key={todo.id}
           onDragStart={(event) => dragStartHandler(event, todo)}
@@ -64,7 +64,7 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
   const boardSize = () => {
     let countBoards = 0;
     todos.forEach((singleTodo) => {
-      if (singleTodo.status === boardName) {
+      if (singleTodo.lista === boardName) {
         countBoards += 1;
       }
     });

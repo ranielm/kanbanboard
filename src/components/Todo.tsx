@@ -22,18 +22,20 @@ export interface TodoProps {
 
 const Todo = ({ todo }: TodoProps) => {
   const [todoForm, setTodoForm] = useState(todo);
-  const [title, setTitle] = useState(todo.title);
-  const [description, setDescription] = useState(todo.description);
-  const { deleteTodo, updateTodo } = useContext(TodoContext) as TodoContextType;
+  const [title, setTitle] = useState(todo.titulo);
+  const [description, setDescription] = useState(todo.conteudo);
+  const { deleteTodo, updateTodo, saveTodo } = useContext(
+    TodoContext
+  ) as TodoContextType;
 
   const handleValues = (type: "title" | "description", value: string) => {
     const tempTodoForm = { ...todoForm };
 
     if (type === "title") {
-      tempTodoForm.title = value;
+      tempTodoForm.titulo = value;
       setTitle(value);
     } else {
-      tempTodoForm.description = value;
+      tempTodoForm.conteudo = value;
       setDescription(value);
     }
 
@@ -81,7 +83,7 @@ const Todo = ({ todo }: TodoProps) => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Save ToDo">
-              <IconButton style={pointer} onClick={() => deleteTodo(todoForm)}>
+              <IconButton style={pointer} onClick={() => saveTodo(todoForm)}>
                 <SaveOutlinedIcon />
               </IconButton>
             </Tooltip>
