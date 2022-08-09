@@ -23,14 +23,21 @@ export interface ISnackbar {
   type: AlertColor;
 }
 
+export interface ICredential {
+  token: string;
+  expiresIn: number;
+}
+
 export type TodoContextType = {
   todos: ITodo[];
   todoForDrop: ITodo;
   newBlankTodo: ITodo;
   snackbar: ISnackbar;
+  credential: ICredential;
+  setCredential: Dispatch<SetStateAction<ICredential>>;
   setTodoForDrop: Dispatch<SetStateAction<ITodo>>;
   setSnackbar: Dispatch<SetStateAction<ISnackbar>>;
-  setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
+  setTodos: Dispatch<SetStateAction<ITodo[]>>;
   addTodo: (todo: ITodo) => void;
   updateTodo: (todo: ITodo) => void;
   deleteTodo: (todo: ITodo) => void;

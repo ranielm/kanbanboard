@@ -10,7 +10,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import auth from "../api/auth";
 import { getTodos, saveTodo, removeTodo, editTodo } from "../api/cards";
-import { TodoContextType, ITodo, ISnackbar } from "../types/todo";
+import { TodoContextType, ITodo, ISnackbar, ICredential } from "../types/todo";
 
 export const TodoContext = createContext<TodoContextType | null>(null);
 
@@ -26,8 +26,23 @@ const newBlankTodo: ITodo = {
   previous: "ToDo"
 };
 
+const newBlankCredential: ICredential = {
+  token: "",
+  expiresIn: 0
+};
+
+const newBlankSnackbar: ISnackbar = {
+  message: "",
+  open: false,
+  type: "error"
+};
+
 const TodoProvider: FC<Props> = ({ children }) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const [credential, setCredential] = useState<ICredential>(newBlankCredential);
+  const [todoForDrop, setTodoForDrop] = useState<ITodo>(newBlankTodo);
+  const [snackbar, setSnackbar] = useState<ISnackbar>(newBlankSnackbar);
+
   const getCards = async (): Promise<ITodo[]> => {
     const response = await auth();
     setTodos(response);
@@ -39,14 +54,6 @@ const TodoProvider: FC<Props> = ({ children }) => {
     return todoForApi.some((todo) => todo.id === id);
   };
 
-  const [todoForDrop, setTodoForDrop] = useState<ITodo>(newBlankTodo);
-  const [snackbar, setSnackbar] = useState<ISnackbar>({
-    message: "",
-    open: false,
-    type: "error"
-  });
-
-  // CONTEXT
   const addTodo = async (todo: ITodo) => {
     if (!(await found(todo.id))) {
       const newTodo = await saveTodo(todo);
@@ -93,6 +100,8 @@ const TodoProvider: FC<Props> = ({ children }) => {
       todoForDrop,
       newBlankTodo,
       snackbar,
+      credential,
+      setCredential,
       setTodoForDrop,
       setSnackbar,
       setTodos,
