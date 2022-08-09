@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   Box,
   Card as MaterialCard,

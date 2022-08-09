@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-/* eslint-disable no-console */
+
 import jwt_decode from "jwt-decode";
 import { ILoginRequest, ITodo } from "../types/todo";
 import axiosInstance from "./api";

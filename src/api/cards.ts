@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ITodo } from "../types/todo";
 import axiosInstance from "./api";
 
