@@ -94,7 +94,11 @@ const GenerateCard = ({ boardName, todos }: GenerateCardProps) => {
         {boardName === "ToDo" && (
           <Grid container justifyContent="flex-end">
             <Tooltip title="Add ToDo" sx={{ mr: 1, mb: 2 }}>
-              <IconButton style={pointer} onClick={() => handleSaveTodo()}>
+              <IconButton
+                role="button"
+                style={pointer}
+                onClick={() => handleSaveTodo()}
+              >
                 <AddCircleOutlineOutlinedIcon />
               </IconButton>
             </Tooltip>
