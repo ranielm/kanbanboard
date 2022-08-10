@@ -52,6 +52,7 @@ const Todo = ({ todo }: TodoProps) => {
             container
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 1, sm: 1, md: 1 }}
+            role="form"
           >
             <Grid item xs={1} sm={1} md={1}>
               <TextField
@@ -84,8 +85,12 @@ const Todo = ({ todo }: TodoProps) => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Save ToDo">
-              <IconButton style={pointer} onClick={() => addTodo(todoForm)}>
-                <SaveOutlinedIcon data-testid="button-add-todo" />
+              <IconButton
+                data-testid="add-todo"
+                style={pointer}
+                onClick={() => addTodo(todoForm)}
+              >
+                <SaveOutlinedIcon data-testid="button-save-todo" />
               </IconButton>
             </Tooltip>
           </Grid>
