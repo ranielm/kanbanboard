@@ -24,12 +24,12 @@ describe("Todos", () => {
     );
   });
 
-  test("should show boards with specific board name", async () => {
+  test("should show board with form labels", async () => {
     expect(screen.getByText(/Title/i)).toBeInTheDocument();
     expect(screen.getByText(/Content/i)).toBeInTheDocument();
   });
 
-  test("should show boar pass by props", async () => {
+  test("should show task with field pass by props", async () => {
     expect(screen.getByText(/My first task/i)).toBeInTheDocument();
     expect(screen.queryByText(/My second task/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Subject of my first task/i)).toBeInTheDocument();
