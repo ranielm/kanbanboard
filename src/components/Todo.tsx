@@ -85,7 +85,7 @@ const Todo = ({ todo }: TodoProps) => {
             </Tooltip>
             <Tooltip title="Save ToDo">
               <IconButton style={pointer} onClick={() => addTodo(todoForm)}>
-                <SaveOutlinedIcon />
+                <SaveOutlinedIcon data-testid="button-add-todo" />
               </IconButton>
             </Tooltip>
           </Grid>
