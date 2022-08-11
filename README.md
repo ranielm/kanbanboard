@@ -57,5 +57,5 @@ The first way is better.
 
 ## Demo:
 
-![demo1](assets/demo1.png)
-![demo2](assets/demo2.png)
+![demo1](assets/Demo1.png)
+![demo2](assets/Demo2.png)
