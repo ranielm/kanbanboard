@@ -14,7 +14,7 @@ A simple todo app where user can add their task. User can drag and drop the card
 3. Run `docker-compose up` as sudo/admin to start the project with frontend and backend.<br />
 4. To see the app go to [http://localhost:3000](http://localhost:3000).
 
-or 
+or
 
 1. Clone this repo using `git clone https://github.com/ranielm/kanbanboard.git`
 2. Move to the appropriate directory: `cd kanbanboard`.<br />
@@ -39,7 +39,7 @@ The first way is better.
 - **React** — A JavaScript library for building user interfaces, with Hooks | v18.2.0
 - **Typescript** — A strongly typed programming language that builds on JavaScript | v4.6.4
 - **React Router Dom** — Declarative Routing for React.js | v6.3.0
-- **Vite** — A pre-configured dev server + bundler combo, but leaner and faster | v3.0.0 
+- **Vite** — A pre-configured dev server + bundler combo, but leaner and faster | v3.0.0
 - **CSS** — Styled Components | v5.3.5
 - **Tests** — Vitest (js-dom), React Testing Library | v0.21.1 | v13.3.0
 - **Prettier** — An opinionated code formatter | v27.4.7 | v2.7.1
